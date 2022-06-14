@@ -1,1 +1,5 @@
-# weather-app
+# Weather app
+
+## Features
+
+### Deploy application
