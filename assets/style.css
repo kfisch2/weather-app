@@ -26,14 +26,16 @@ background: linear-gradient(90deg, rgba(17,17,87,1) 0%, rgba(3,50,80,1) 32%, rgb
 }
 
 .previousSearch {
+  color: white;
   border-radius: 5px;
-  background-color: gray;
+  background-color: rgba(17,17,87,1);
   margin-top: 25px;
   padding: 10px;
 }
 
 .previousSearch li {
-  background-color: rgba(0, 112, 135, 0.623);
+  color: white;
+  background-color: rgba(0, 112, 135, 0.884);
   padding: 5px;
 }
 

@@ -31,7 +31,7 @@ let getLatAndLon = (city) => {
         previousSearchEl.appendChild(previousSearch);
       });
     } else {
-      alert("please enter a US city")
+      alert("please enter a city")
     }
 
   });
@@ -185,9 +185,143 @@ let getTemperature = (lat, lon) => {
         dayTwoContainer.appendChild(conditions2);
         conditions2.innerHTML = "Conditions: " + data.daily[2].weather[0].description;
       };
+
+      // DAY THREE
+      let dayThree = () => {
+        // DAY Three INFO
+        let dayThreeContainer = document.querySelector(".day3");
+        dayThreeContainer.innerHTML = "";
+
+        // date 
+        let newDate3 = document.createElement("div");
+        dayThreeContainer.appendChild(newDate3);
+        d.setDate(d.getDate() + 1)
+        newDate3.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+
+        // uv index
+        let uvIndex3 = document.createElement("div");
+        dayThreeContainer.appendChild(uvIndex3);
+        uvIndex3.innerHTML = "UV Index: " + data.daily[3].uvi;
+
+        // max temp
+        let maxTemp3 = document.createElement("div");
+        dayThreeContainer.appendChild(maxTemp3);
+        maxTemp3.innerHTML = "High temp: " + data.daily[3].temp.max;
+
+        // min temp
+        let minTemp3 = document.createElement("div");
+        dayThreeContainer.append(minTemp3);
+        minTemp3.innerHTML = "Low temp: " + data.daily[3].temp.min;
+
+        // humidity 
+        let humidity3 = document.createElement("div");
+        dayThreeContainer.appendChild(humidity3);
+        humidity3.innerHTML = "Humidity: " + data.daily[3].humidity + "%";
+
+        // wind speed
+        let wind3 = document.createElement("div");
+        dayThreeContainer.appendChild(wind3);
+        wind3.innerHTML = "Wind: " + data.daily[3].wind_speed + " mph"
+
+        // weather conditions
+        let conditions3 = document.createElement("div");
+        dayThreeContainer.appendChild(conditions3);
+        conditions3.innerHTML = "Conditions: " + data.daily[3].weather[0].description;
+      };
+
+      // DAY FOUR
+      let dayFour = () => {
+        // DAY Four INFO
+        let dayFourContainer = document.querySelector(".day4");
+        dayFourContainer.innerHTML = "";
+
+        // date 
+        let newDate4 = document.createElement("div");
+        dayFourContainer.appendChild(newDate4);
+        d.setDate(d.getDate() + 1)
+        newDate4.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+
+        // uv index
+        let uvIndex4 = document.createElement("div");
+        dayFourContainer.appendChild(uvIndex4);
+        uvIndex4.innerHTML = "UV Index: " + data.daily[4].uvi;
+
+        // max temp
+        let maxTemp4 = document.createElement("div");
+        dayFourContainer.appendChild(maxTemp4);
+        maxTemp4.innerHTML = "High temp: " + data.daily[4].temp.max;
+
+        // min temp
+        let minTemp4 = document.createElement("div");
+        dayFourContainer.append(minTemp4);
+        minTemp4.innerHTML = "Low temp: " + data.daily[4].temp.min;
+
+        // humidity 
+        let humidity4 = document.createElement("div");
+        dayFourContainer.appendChild(humidity4);
+        humidity4.innerHTML = "Humidity: " + data.daily[4].humidity + "%";
+
+        // wind speed
+        let wind4 = document.createElement("div");
+        dayFourContainer.appendChild(wind4);
+        wind4.innerHTML = "Wind: " + data.daily[4].wind_speed + " mph"
+
+        // weather conditions
+        let conditions4 = document.createElement("div");
+        dayFourContainer.appendChild(conditions4);
+        conditions4.innerHTML = "Conditions: " + data.daily[4].weather[0].description;
+      };
+
+      // DAY FIVE
+      let dayFive = () => {
+        // DAY Five INFO
+        let dayFiveContainer = document.querySelector(".day5");
+        dayFiveContainer.innerHTML = "";
+
+        // date 
+        let newDate5= document.createElement("div");
+        dayFiveContainer.appendChild(newDate5);
+        d.setDate(d.getDate() + 1)
+        newDate5.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+
+        // uv index
+        let uvIndex5 = document.createElement("div");
+        dayFiveContainer.appendChild(uvIndex5);
+        uvIndex5.innerHTML = "UV Index: " + data.daily[5].uvi;
+
+        // max temp
+        let maxTemp5 = document.createElement("div");
+        dayFiveContainer.appendChild(maxTemp5);
+        maxTemp5.innerHTML = "High temp: " + data.daily[5].temp.max;
+
+        // min temp
+        let minTemp5 = document.createElement("div");
+        dayFiveContainer.append(minTemp5);
+        minTemp5.innerHTML = "Low temp: " + data.daily[5].temp.min;
+
+        // humidity 
+        let humidity5 = document.createElement("div");
+        dayFiveContainer.appendChild(humidity5);
+        humidity5.innerHTML = "Humidity: " + data.daily[5].humidity + "%";
+
+        // wind speed
+        let wind5 = document.createElement("div");
+        dayFiveContainer.appendChild(wind5);
+        wind5.innerHTML = "Wind: " + data.daily[5].wind_speed + " mph"
+
+        // weather conditions
+        let conditions5 = document.createElement("div");
+        dayFiveContainer.appendChild(conditions5);
+        conditions5.innerHTML = "Conditions: " + data.daily[5].weather[0].description;
+      };
+
+
       currentWeather();
       dayOne();
       dayTwo();
+      dayThree();
+      dayFour();
+      dayFive();
     });
 
   });
