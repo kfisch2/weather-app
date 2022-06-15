@@ -6,9 +6,9 @@ let weatherBtn = document.querySelector(".weatherBtn")
 weatherBtn.addEventListener("click", function () {
   let userCity = userInput.value;
 
-
   //change to userCity
   getLatAndLon(userCity);
+
 });
 
 // convert userCity to lat and lon
@@ -39,6 +39,8 @@ let getLatAndLon = (city) => {
 
 
 
+
+
 // display temperature function
 let getTemperature = (lat, lon) => {
   const APIKey = "1eb784753dd9691347d2b905eeeffc69";
@@ -49,39 +51,58 @@ let getTemperature = (lat, lon) => {
       let d = new Date();
       let currentDate = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
+      console.log(data)
       // current weather function
       let currentWeather = () => {
-        // current weather info
 
+        // current weather info
         let currentWeatherEl = document.querySelector(".currentWeather")
         currentWeatherEl.textContent = "";
         let currentWeatherInfo = document.createElement("div");
         currentWeatherEl.appendChild(currentWeatherInfo);
-       
-        
+
+
 
         // city name
         let cityName = document.createElement("div");
         currentWeatherInfo.appendChild(cityName);
         cityName.textContent = userInput.value.toUpperCase() + " (" + currentDate + ")";
 
-        // weather icon
-        // if statement 
 
         // uv index
-        let uvIndex0 = document.createElement("div");
-        currentWeatherInfo.appendChild(uvIndex0);
-        uvIndex0.innerHTML = "UV Index: " + data.daily[0].uvi;
+        let uvIndex = document.createElement("span");
+        currentWeatherInfo.appendChild(uvIndex);
+        let uvRead = data.daily[0].uvi;
+
+        uvIndex.innerHTML = "UV Index: " + uvRead;
+
+        // uv index background color function
+        let uvColor = () => {
+          if (uvRead >= 8) {
+            uvIndex.className = "very-high"
+          } else if (
+            uvRead >= 6) {
+            uvIndex.className = "high"
+          } else if (
+            uvRead >= 3) {
+            uvIndex.className = "moderate"
+          } else if (uvRead <= 2) {
+            uvIndex.className = "low"
+          }
+        };
+
+        uvColor();
+
 
         // max temp
         let maxTemp0 = document.createElement("div");
         currentWeatherInfo.appendChild(maxTemp0);
-        maxTemp0.innerHTML = "High temp: " + data.daily[0].temp.max;
+        maxTemp0.innerHTML = "High temp: " + data.daily[0].temp.max + " °F";
 
         // min temp
         let minTemp0 = document.createElement("div");
         currentWeatherInfo.append(minTemp0);
-        minTemp0.innerHTML = "Low temp: " + data.daily[0].temp.min;
+        minTemp0.innerHTML = "Low temp: " + data.daily[0].temp.min + " °F";
 
         // humidity 
         let humidity0 = document.createElement("div");
@@ -96,7 +117,17 @@ let getTemperature = (lat, lon) => {
         // weather conditions
         let conditions0 = document.createElement("div");
         currentWeatherInfo.appendChild(conditions0);
-        conditions0.innerHTML = "Conditions: " + data.daily[0].weather[0].description;
+        conditions0.innerHTML = "Current conditions: " + data.current.weather[0].description;
+
+        // weather icon
+        let spanIcon = document.createElement("span");
+        let weatherIcon = document.createElement("img");
+        spanIcon.appendChild(weatherIcon)
+        currentWeatherInfo.appendChild(spanIcon);
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"
+
+
+
       };
 
 
@@ -112,21 +143,15 @@ let getTemperature = (lat, lon) => {
         newDate1.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
 
-
-        // uv index
-        let uvIndex1 = document.createElement("div");
-        dayOneContainer.appendChild(uvIndex1);
-        uvIndex1.innerHTML = "UV Index: " + data.daily[1].uvi;
-
         // max temp
         let maxTemp1 = document.createElement("div");
         dayOneContainer.appendChild(maxTemp1);
-        maxTemp1.innerHTML = "High temp: " + data.daily[1].temp.max;
+        maxTemp1.innerHTML = "High temp: " + data.daily[1].temp.max + " °F";
 
         // min temp
         let minTemp1 = document.createElement("div");
         dayOneContainer.append(minTemp1);
-        minTemp1.innerHTML = "Low temp: " + data.daily[1].temp.min;
+        minTemp1.innerHTML = "Low temp: " + data.daily[1].temp.min + " °F";
 
         // humidity 
         let humidity1 = document.createElement("div");
@@ -141,7 +166,15 @@ let getTemperature = (lat, lon) => {
         // weather conditions
         let conditions1 = document.createElement("div");
         dayOneContainer.appendChild(conditions1);
-        conditions1.innerHTML = "Conditions: " + data.daily[1].weather[0].description;
+        conditions1.innerHTML = "Conditions: " + data.daily[0].weather[0].description;
+
+        // weather icon
+        let spanIcon = document.createElement("span");
+        let weatherIcon = document.createElement("img");
+        spanIcon.appendChild(weatherIcon)
+        dayOneContainer.appendChild(spanIcon);
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[0].weather[0].icon + "@2x.png"
+
       };
 
       let dayTwo = () => {
@@ -153,22 +186,17 @@ let getTemperature = (lat, lon) => {
         let newDate2 = document.createElement("div");
         dayTwoContainer.appendChild(newDate2);
         d.setDate(d.getDate() + 1)
-        newDate2.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
-
-        // uv index
-        let uvIndex2 = document.createElement("div");
-        dayTwoContainer.appendChild(uvIndex2);
-        uvIndex2.innerHTML = "UV Index: " + data.daily[2].uvi;
+        newDate2.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear()
 
         // max temp
         let maxTemp2 = document.createElement("div");
         dayTwoContainer.appendChild(maxTemp2);
-        maxTemp2.innerHTML = "High temp: " + data.daily[2].temp.max;
+        maxTemp2.innerHTML = "High temp: " + data.daily[2].temp.max + " °F";
 
         // min temp
         let minTemp2 = document.createElement("div");
         dayTwoContainer.append(minTemp2);
-        minTemp2.innerHTML = "Low temp: " + data.daily[2].temp.min;
+        minTemp2.innerHTML = "Low temp: " + data.daily[2].temp.min + " °F";
 
         // humidity 
         let humidity2 = document.createElement("div");
@@ -183,7 +211,15 @@ let getTemperature = (lat, lon) => {
         // weather conditions
         let conditions2 = document.createElement("div");
         dayTwoContainer.appendChild(conditions2);
-        conditions2.innerHTML = "Conditions: " + data.daily[2].weather[0].description;
+        conditions2.innerHTML = "Conditions: " + data.daily[1].weather[0].description;
+
+        // weather icon
+        let spanIcon = document.createElement("span");
+        let weatherIcon = document.createElement("img");
+        spanIcon.appendChild(weatherIcon)
+        dayTwoContainer.appendChild(spanIcon);
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[1].weather[0].icon + "@2x.png"
+
       };
 
       // DAY THREE
@@ -198,20 +234,15 @@ let getTemperature = (lat, lon) => {
         d.setDate(d.getDate() + 1)
         newDate3.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
-        // uv index
-        let uvIndex3 = document.createElement("div");
-        dayThreeContainer.appendChild(uvIndex3);
-        uvIndex3.innerHTML = "UV Index: " + data.daily[3].uvi;
-
         // max temp
         let maxTemp3 = document.createElement("div");
         dayThreeContainer.appendChild(maxTemp3);
-        maxTemp3.innerHTML = "High temp: " + data.daily[3].temp.max;
+        maxTemp3.innerHTML = "High temp: " + data.daily[3].temp.max + " °F";
 
         // min temp
         let minTemp3 = document.createElement("div");
         dayThreeContainer.append(minTemp3);
-        minTemp3.innerHTML = "Low temp: " + data.daily[3].temp.min;
+        minTemp3.innerHTML = "Low temp: " + data.daily[3].temp.min + " °F";
 
         // humidity 
         let humidity3 = document.createElement("div");
@@ -226,7 +257,15 @@ let getTemperature = (lat, lon) => {
         // weather conditions
         let conditions3 = document.createElement("div");
         dayThreeContainer.appendChild(conditions3);
-        conditions3.innerHTML = "Conditions: " + data.daily[3].weather[0].description;
+        conditions3.innerHTML = "Conditions: " + data.daily[2].weather[0].description;
+
+        // weather icon
+        let spanIcon = document.createElement("span");
+        let weatherIcon = document.createElement("img");
+        spanIcon.appendChild(weatherIcon)
+        dayThreeContainer.appendChild(spanIcon);
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[2].weather[0].icon + "@2x.png"
+
       };
 
       // DAY FOUR
@@ -241,20 +280,15 @@ let getTemperature = (lat, lon) => {
         d.setDate(d.getDate() + 1)
         newDate4.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
-        // uv index
-        let uvIndex4 = document.createElement("div");
-        dayFourContainer.appendChild(uvIndex4);
-        uvIndex4.innerHTML = "UV Index: " + data.daily[4].uvi;
-
         // max temp
         let maxTemp4 = document.createElement("div");
         dayFourContainer.appendChild(maxTemp4);
-        maxTemp4.innerHTML = "High temp: " + data.daily[4].temp.max;
+        maxTemp4.innerHTML = "High temp: " + data.daily[4].temp.max + " °F";
 
         // min temp
         let minTemp4 = document.createElement("div");
         dayFourContainer.append(minTemp4);
-        minTemp4.innerHTML = "Low temp: " + data.daily[4].temp.min;
+        minTemp4.innerHTML = "Low temp: " + data.daily[4].temp.min + " °F";
 
         // humidity 
         let humidity4 = document.createElement("div");
@@ -269,7 +303,15 @@ let getTemperature = (lat, lon) => {
         // weather conditions
         let conditions4 = document.createElement("div");
         dayFourContainer.appendChild(conditions4);
-        conditions4.innerHTML = "Conditions: " + data.daily[4].weather[0].description;
+        conditions4.innerHTML = "Conditions: " + data.daily[3].weather[0].description;
+
+        // weather icon
+        let spanIcon = document.createElement("span");
+        let weatherIcon = document.createElement("img");
+        spanIcon.appendChild(weatherIcon)
+        dayFourContainer.appendChild(spanIcon);
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[3].weather[0].icon + "@2x.png"
+
       };
 
       // DAY FIVE
@@ -279,25 +321,20 @@ let getTemperature = (lat, lon) => {
         dayFiveContainer.innerHTML = "";
 
         // date 
-        let newDate5= document.createElement("div");
+        let newDate5 = document.createElement("div");
         dayFiveContainer.appendChild(newDate5);
         d.setDate(d.getDate() + 1)
         newDate5.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
-        // uv index
-        let uvIndex5 = document.createElement("div");
-        dayFiveContainer.appendChild(uvIndex5);
-        uvIndex5.innerHTML = "UV Index: " + data.daily[5].uvi;
-
         // max temp
         let maxTemp5 = document.createElement("div");
         dayFiveContainer.appendChild(maxTemp5);
-        maxTemp5.innerHTML = "High temp: " + data.daily[5].temp.max;
+        maxTemp5.innerHTML = "High temp: " + data.daily[5].temp.max + " °F"
 
         // min temp
         let minTemp5 = document.createElement("div");
         dayFiveContainer.append(minTemp5);
-        minTemp5.innerHTML = "Low temp: " + data.daily[5].temp.min;
+        minTemp5.innerHTML = "Low temp: " + data.daily[5].temp.min + " °F";
 
         // humidity 
         let humidity5 = document.createElement("div");
@@ -312,7 +349,15 @@ let getTemperature = (lat, lon) => {
         // weather conditions
         let conditions5 = document.createElement("div");
         dayFiveContainer.appendChild(conditions5);
-        conditions5.innerHTML = "Conditions: " + data.daily[5].weather[0].description;
+        conditions5.innerHTML = "Conditions: " + data.daily[4].weather[0].description;
+
+        // weather icon
+        let spanIcon = document.createElement("span");
+        let weatherIcon = document.createElement("img");
+        spanIcon.appendChild(weatherIcon)
+        dayFiveContainer.appendChild(spanIcon);
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[4].weather[0].icon + "@2x.png"
+
       };
 
 
@@ -322,11 +367,13 @@ let getTemperature = (lat, lon) => {
       dayThree();
       dayFour();
       dayFive();
-    });
 
-  });
-  ;
+    })
+  })
 }
+
+
+
 
 
 
