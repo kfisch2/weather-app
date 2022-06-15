@@ -21,6 +21,20 @@ background: linear-gradient(90deg, rgba(17,17,87,1) 0%, rgba(3,50,80,1) 32%, rgb
 
 .userInput {
   display: inline-block;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.previousSearch {
+  border-radius: 5px;
+  background-color: gray;
+  margin-top: 25px;
+  padding: 10px;
+}
+
+.previousSearch li {
+  background-color: wheat;
+  padding: 5px;
 }
 
 .forecast {
@@ -30,6 +44,10 @@ background: linear-gradient(90deg, rgba(17,17,87,1) 0%, rgba(3,50,80,1) 32%, rgb
 .currentWeather {
   border: 1px solid black;
   font-weight: bold;
+  padding: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
 }
 
 .dayOne {
