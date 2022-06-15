@@ -6,21 +6,67 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./assets/style.css" />
-  <!-- CSS only -->
+  <!--Bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!--CSS sheet-->
+  <link rel="stylesheet" href="./assets/style.css" />
 </head>
 
 <body>
+  <header>Weather Dashboard</header>
   <div class="container">
-    <input type="text" class="userInput col" placeholder="Enter city">
-    <button type="submit" class="weatherBtn">Get weather information</button>
+    <div class="row">
+      <div class="col-4">
+        <input type="text" class="userInput" placeholder="Enter city">
+        <button type="submit" class="weatherBtn">Get weather information</button>
+        <div class="previousSearch">Previous searches</div>
+      </div>
 
-    <div class="weatherInfo col">
-      <div class="city-name">Looking at weather for </div>
+      <div class="weatherContainer col-8">
+        <!--Today-->
+        <div class="today">
+          <div class="currentWeather"> <br> </div>
+        </div>
+
+        <!--5 day forecast-->
+        <div class="forecast row">
+
+          <div class="dayOne col">
+            Day one
+            <div class="day1"></div>
+          </div>
+
+          <div class="dayTwo col">
+            Day two
+            <div class="day2"></div>
+          </div>
+
+          <div class="dayThree col">
+            Day three
+            <div class="day3"></div>
+          </div>
+
+          <div class="dayFour col">
+            Day four
+            <div class="day4"></div>
+          </div>
+
+          <div class="dayFive col">
+            Day five
+            <div class="day5"></div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
+
+
+
+
+
+
 
   <script src="./assets/script.js"></script>
 </body>
