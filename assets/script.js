@@ -9,7 +9,7 @@ weatherBtn.addEventListener("click", function () {
 
   //change to userCity
   getLatAndLon(userCity);
-});euge
+});
 
 // convert userCity to lat and lon
 let getLatAndLon = (city) => {
@@ -27,7 +27,7 @@ let getLatAndLon = (city) => {
         let userCity = userInput.value;
         let previousSearchEl = document.querySelector(".previousSearch");
         let previousSearch = document.createElement("li");
-        previousSearch.textContent = userCity;
+        previousSearch.textContent = userCity.toUpperCase();
         previousSearchEl.appendChild(previousSearch);
       });
     } else {
