@@ -1,15 +1,35 @@
 let userInput = document.querySelector(".userInput");
 
+// list previously searched cities
+let searcHistory = document.querySelector(".previousSearch");
+cityItem = document.createElement("li");
+
+searcHistory.textContent = localStorage.getItem("Searched cities")
+searcHistory.style.backgroundColor = "grey"
+
+
+
+// local storage for searched cities
+var citySearches = [];
+let storeCity = () => {
+  citySearches.push(userInput.value)
+  localStorage.setItem("Searched cities", citySearches)
+}
+
+
 
 // get weather button
 let weatherBtn = document.querySelector(".weatherBtn")
 weatherBtn.addEventListener("click", function () {
+  storeCity();
   let userCity = userInput.value;
 
   //change to userCity
   getLatAndLon(userCity);
 
 });
+
+
 
 // convert userCity to lat and lon
 let getLatAndLon = (city) => {
@@ -26,17 +46,32 @@ let getLatAndLon = (city) => {
         // add city to previous search bar
         let userCity = userInput.value;
         let previousSearchEl = document.querySelector(".previousSearch");
-        let previousSearch = document.createElement("li");
+        let previousSearch = document.createElement("li");   
+
+
+
+        // user clicks previous city
+        previousSearch.addEventListener("click", function () {
+          getLatAndLon();
+        })
+
+
         previousSearch.textContent = userCity.toUpperCase();
+        previousSearch.className = "searchedCity"
         previousSearchEl.appendChild(previousSearch);
+
+
+
       });
+
+
+
     } else {
       alert("please enter a city")
     }
 
   });
 };
-
 
 
 
@@ -66,6 +101,7 @@ let getTemperature = (lat, lon) => {
         // city name
         let cityName = document.createElement("div");
         currentWeatherInfo.appendChild(cityName);
+        cityName.id = "cityName"
         cityName.textContent = userInput.value.toUpperCase() + " (" + currentDate + ")";
 
 
@@ -124,7 +160,7 @@ let getTemperature = (lat, lon) => {
         let weatherIcon = document.createElement("img");
         spanIcon.appendChild(weatherIcon)
         currentWeatherInfo.appendChild(spanIcon);
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"
+        weatherIcon.src = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"
 
 
 
@@ -141,7 +177,11 @@ let getTemperature = (lat, lon) => {
         dayOneContainer.appendChild(newDate1);
         d.setDate(d.getDate() + 1)
         newDate1.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
-
+        newDate1.style.fontWeight = "bold";
+        newDate1.style.color = "black"
+        newDate1.style.backgroundColor = "lightgray"
+        newDate1.style.borderRadius = "2px"
+        newDate1.style.marginTop = "5px"
 
         // max temp
         let maxTemp1 = document.createElement("div");
@@ -173,7 +213,7 @@ let getTemperature = (lat, lon) => {
         let weatherIcon = document.createElement("img");
         spanIcon.appendChild(weatherIcon)
         dayOneContainer.appendChild(spanIcon);
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[0].weather[0].icon + "@2x.png"
+        weatherIcon.src = "https://openweathermap.org/img/wn/" + data.daily[0].weather[0].icon + "@2x.png"
 
       };
 
@@ -187,6 +227,13 @@ let getTemperature = (lat, lon) => {
         dayTwoContainer.appendChild(newDate2);
         d.setDate(d.getDate() + 1)
         newDate2.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear()
+
+        newDate2.style.fontWeight = "bold";
+        newDate2.style.color = "black"
+        newDate2.style.backgroundColor = "lightgray"
+        newDate2.style.borderRadius = "2px"
+        newDate2.style.marginTop = "5px"
+
 
         // max temp
         let maxTemp2 = document.createElement("div");
@@ -218,7 +265,7 @@ let getTemperature = (lat, lon) => {
         let weatherIcon = document.createElement("img");
         spanIcon.appendChild(weatherIcon)
         dayTwoContainer.appendChild(spanIcon);
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[1].weather[0].icon + "@2x.png"
+        weatherIcon.src = "https://openweathermap.org/img/wn/" + data.daily[1].weather[0].icon + "@2x.png"
 
       };
 
@@ -233,6 +280,12 @@ let getTemperature = (lat, lon) => {
         dayThreeContainer.appendChild(newDate3);
         d.setDate(d.getDate() + 1)
         newDate3.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+
+        newDate3.style.fontWeight = "bold";
+        newDate3.style.color = "black"
+        newDate3.style.backgroundColor = "lightgray"
+        newDate3.style.borderRadius = "2px"
+        newDate3.style.marginTop = "5px"
 
         // max temp
         let maxTemp3 = document.createElement("div");
@@ -264,7 +317,7 @@ let getTemperature = (lat, lon) => {
         let weatherIcon = document.createElement("img");
         spanIcon.appendChild(weatherIcon)
         dayThreeContainer.appendChild(spanIcon);
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[2].weather[0].icon + "@2x.png"
+        weatherIcon.src = "https://openweathermap.org/img/wn/" + data.daily[2].weather[0].icon + "@2x.png"
 
       };
 
@@ -279,6 +332,12 @@ let getTemperature = (lat, lon) => {
         dayFourContainer.appendChild(newDate4);
         d.setDate(d.getDate() + 1)
         newDate4.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+
+        newDate4.style.fontWeight = "bold";
+        newDate4.style.color = "black"
+        newDate4.style.backgroundColor = "lightgray"
+        newDate4.style.borderRadius = "2px"
+        newDate4.style.marginTop = "5px"
 
         // max temp
         let maxTemp4 = document.createElement("div");
@@ -310,7 +369,7 @@ let getTemperature = (lat, lon) => {
         let weatherIcon = document.createElement("img");
         spanIcon.appendChild(weatherIcon)
         dayFourContainer.appendChild(spanIcon);
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[3].weather[0].icon + "@2x.png"
+        weatherIcon.src = "https://openweathermap.org/img/wn/" + data.daily[3].weather[0].icon + "@2x.png"
 
       };
 
@@ -325,6 +384,12 @@ let getTemperature = (lat, lon) => {
         dayFiveContainer.appendChild(newDate5);
         d.setDate(d.getDate() + 1)
         newDate5.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+
+        newDate5.style.fontWeight = "bold";
+        newDate5.style.color = "black"
+        newDate5.style.backgroundColor = "lightgray"
+        newDate5.style.borderRadius = "2px"
+        newDate5.style.marginTop = "5px"
 
         // max temp
         let maxTemp5 = document.createElement("div");
@@ -356,7 +421,7 @@ let getTemperature = (lat, lon) => {
         let weatherIcon = document.createElement("img");
         spanIcon.appendChild(weatherIcon)
         dayFiveContainer.appendChild(spanIcon);
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[4].weather[0].icon + "@2x.png"
+        weatherIcon.src = "https://openweathermap.org/img/wn/" + data.daily[4].weather[0].icon + "@2x.png"
 
       };
 
@@ -370,31 +435,4 @@ let getTemperature = (lat, lon) => {
 
     })
   })
-}
-
-
-
-
-
-
-
-
-
-// get weather function
-// let getWeather = (lat, lon) => {
-//   const APIKey = "1eb784753dd9691347d2b905eeeffc69";
-//   const weatherAPI = "https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=" + lat + "&lon=" + lon + '&exclude=hourly,minutely,alerts&appid=' + APIKey;
-//   fetch(weatherAPI).then(function (response) {
-//     response.json().then(function (data) {
-//       // display current temperature
-//       let temperature = document.createElement("div");
-//       weatherEl.appendChild(temperature);
-//       temperature.innerHTML = "The current temperature is " + data.current.temp + " degrees Fahrenheit";
-//       console.log(data)
-//       for (i = 0; i < 5; i++) {
-
-//         console.log(data.daily[i].temp)
-//       }
-//     });
-//   });
-// };
+};
