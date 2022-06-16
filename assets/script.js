@@ -1,19 +1,24 @@
 let userInput = document.querySelector(".userInput");
 
 // list previously searched cities
-let searcHistory = document.querySelector(".previousSearch");
-cityItem = document.createElement("li");
-
-searcHistory.textContent = localStorage.getItem("Searched cities")
-searcHistory.style.backgroundColor = "grey"
+// for (i = 0; i < localStorage.getItem("Search-cities".length); i++) {
+//   let searcHistory = document.querySelector(".previousSearch");
+//   cityItem = document.createElement("li");
+//   searcHistory.appendChild(cityItem);
+//   cityItem.innerHTML = localStorage.getItem("Search-cities", JSON.stringify(citySearches) )
+// }
 
 
 
 // local storage for searched cities
-var citySearches = [];
-let storeCity = () => {
-  citySearches.push(userInput.value)
-  localStorage.setItem("Searched cities", citySearches)
+let storeCity = (city) => {
+  var citySearches = JSON.parse(localStorage.getItem("Searched-cities")) || [];
+  if (!localStorage.getItem("Searched-cities")) {
+    localStorage.setItem("Searched-cities", citySearches)
+  }
+
+  citySearches.push(city);
+  localStorage.setItem("Searched-cities", JSON.stringify(citySearches));
 }
 
 
@@ -21,14 +26,14 @@ let storeCity = () => {
 // get weather button
 let weatherBtn = document.querySelector(".weatherBtn")
 weatherBtn.addEventListener("click", function () {
-  storeCity();
+
   let userCity = userInput.value;
+  storeCity(userCity);
 
   //change to userCity
   getLatAndLon(userCity);
 
 });
-
 
 
 // convert userCity to lat and lon
@@ -46,22 +51,18 @@ let getLatAndLon = (city) => {
         // add city to previous search bar
         let userCity = userInput.value;
         let previousSearchEl = document.querySelector(".previousSearch");
-        let previousSearch = document.createElement("li");   
+        let previousSearch = document.createElement("li");
 
 
 
         // user clicks previous city
         previousSearch.addEventListener("click", function () {
-          getLatAndLon();
+          getLatAndLon(previousSearch.textContent);
         })
-
 
         previousSearch.textContent = userCity.toUpperCase();
         previousSearch.className = "searchedCity"
         previousSearchEl.appendChild(previousSearch);
-
-
-
       });
 
 
@@ -86,7 +87,6 @@ let getTemperature = (lat, lon) => {
       let d = new Date();
       let currentDate = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
-      console.log(data)
       // current weather function
       let currentWeather = () => {
 
