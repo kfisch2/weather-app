@@ -169,6 +169,23 @@ let getTemperature = (lat, lon) => {
 
       };
 
+      // 5 day forecast
+      let forecast = () => {
+        for (i=1;i<6;i++) {
+          let dayContainer = document.querySelector(`.day${i}`);
+          // date
+          let newDate = document.createElement('div');
+          dayContainer.appendChild(newDate);
+          d.setDate(d.getDate() + 1);
+          newDate.innerHTML = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
+          newDate.style.fontWeight = "bold";
+          newDate.style.color = "black";
+          newDate.style.backgroundColor = "lightgray"
+          newDate.style.borderRadius = "2px"
+          newDate.style.marginTop = "5px"
+        }
+      }
+
 
       //DAY ONE INFO
       let dayOne = () => {
@@ -430,11 +447,12 @@ let getTemperature = (lat, lon) => {
 
 
       currentWeather();
-      dayOne();
-      dayTwo();
-      dayThree();
-      dayFour();
-      dayFive();
+      forecast();
+      // dayOne();
+      // dayTwo();
+      // dayThree();
+      // dayFour();
+      // dayFive();
 
     })
   })
