@@ -32,6 +32,8 @@ weatherBtn.addEventListener("click", function () {
 
   //change to userCity
   getLatAndLon(userCity);
+  let weatherContainer = document.querySelector('.weatherContainer');
+  weatherContainer.style.display = "block"
 
 });
 
@@ -85,7 +87,7 @@ let getTemperature = (lat, lon) => {
   fetch(weatherAPI).then(function (response) {
     response.json().then(function (data) {
       let d = new Date();
-      let currentDate = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+      let currentDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
       // current weather function
       let currentWeather = () => {
@@ -158,6 +160,7 @@ let getTemperature = (lat, lon) => {
         // weather icon
         let spanIcon = document.createElement("span");
         let weatherIcon = document.createElement("img");
+        weatherIcon.className = "currentWeatherIcon"
         spanIcon.appendChild(weatherIcon)
         currentWeatherInfo.appendChild(spanIcon);
         weatherIcon.src = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png"
@@ -176,7 +179,7 @@ let getTemperature = (lat, lon) => {
         let newDate1 = document.createElement("div");
         dayOneContainer.appendChild(newDate1);
         d.setDate(d.getDate() + 1)
-        newDate1.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+        newDate1.innerHTML = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
         newDate1.style.fontWeight = "bold";
         newDate1.style.color = "black"
         newDate1.style.backgroundColor = "lightgray"
@@ -226,7 +229,7 @@ let getTemperature = (lat, lon) => {
         let newDate2 = document.createElement("div");
         dayTwoContainer.appendChild(newDate2);
         d.setDate(d.getDate() + 1)
-        newDate2.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear()
+        newDate2.innerHTML = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear()
 
         newDate2.style.fontWeight = "bold";
         newDate2.style.color = "black"
@@ -279,7 +282,7 @@ let getTemperature = (lat, lon) => {
         let newDate3 = document.createElement("div");
         dayThreeContainer.appendChild(newDate3);
         d.setDate(d.getDate() + 1)
-        newDate3.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+        newDate3.innerHTML = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
         newDate3.style.fontWeight = "bold";
         newDate3.style.color = "black"
@@ -331,7 +334,7 @@ let getTemperature = (lat, lon) => {
         let newDate4 = document.createElement("div");
         dayFourContainer.appendChild(newDate4);
         d.setDate(d.getDate() + 1)
-        newDate4.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+        newDate4.innerHTML = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
         newDate4.style.fontWeight = "bold";
         newDate4.style.color = "black"
@@ -383,7 +386,7 @@ let getTemperature = (lat, lon) => {
         let newDate5 = document.createElement("div");
         dayFiveContainer.appendChild(newDate5);
         d.setDate(d.getDate() + 1)
-        newDate5.innerHTML = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+        newDate5.innerHTML = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
         newDate5.style.fontWeight = "bold";
         newDate5.style.color = "black"

@@ -5,9 +5,9 @@
 
 header {
   text-align: center;
-  background: rgb(17, 17, 87);
-  background: linear-gradient(90deg, rgba(17, 17, 87, 1) 0%, rgba(3, 51, 80, 0.685) 32%, rgba(151, 180, 224, 0.801) 60%);
-  padding: 50px;
+  /* background: rgb(17, 17, 87); */
+  /* background: linear-gradient(90deg, rgba(17, 17, 87, 1) 0%, rgba(3, 51, 80, 0.685) 32%, rgba(151, 180, 224, 0.801) 60%); */
+
   font-size: 50px;
   color: white;
   
@@ -58,13 +58,22 @@ header {
   padding: 10px;
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.459);
   margin-left: 50px;
   margin-right: 50px;
   line-height: 40px;
 
 }
 
+.weatherContainer {
+  display: none;
+}
+
+.currentWeatherIcon {
+  background-color: rgba(177, 174, 174);
+  border-radius: 5px;
+  display: inline
+}
 
 .very-high {
   background-color: red;
@@ -95,39 +104,11 @@ header {
   color: white;
 }
 
-.dayOne {
+.day {
   margin: 2px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: var(--primary);
-}
-
-.dayTwo {
-  margin: 2px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: var(--primary)
-}
-
-.dayThree {
-  margin: 2px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: var(--primary)
-}
-
-.dayFour {
-  margin: 2px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: var(--primary)
-}
-
-.dayFive {
-  margin: 2px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: var(--primary)
 }
 
 body {
